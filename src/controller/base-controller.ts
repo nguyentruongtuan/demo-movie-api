@@ -1,5 +1,6 @@
 import express from "express";
 import { injectable } from "inversify";
+import { ErrorResponse } from "src/middleware/error-response";
 
 @injectable()
 export abstract class BaseController {
@@ -7,10 +8,10 @@ export abstract class BaseController {
 
   constructor() {
     this.router = express.Router();
-    this.init()
+    this.init();
   }
 
-  public abstract init(): void
+  public abstract init(): void;
 
   public getRouter(): express.IRouter {
     return this.router;
