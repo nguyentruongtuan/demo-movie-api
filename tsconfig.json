@@ -30,7 +30,7 @@
       "@model/*": ["./src/model/*"]
     }
   },
-  "hooks": [ "copy-files" ],
-  "include": ["src/**/*", "src/**/*.json"],
+  "hooks": ["copy-files"],
+  "include": ["src/**/*", "src/**/*.json", "src/**/*.yaml"],
   "exclude": ["**/*.spec.ts"]
 }

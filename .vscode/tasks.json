@@ -8,6 +8,15 @@
       "problemMatcher": [],
       "label": "npm: build",
       "detail": "tsc"
+    },
+    {
+      "type": "npm",
+      "script": "copy-files",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: copy-files",
+      "detail": "tsc",
+      "dependsOn": ["npm: build"]
     }
   ]
 }

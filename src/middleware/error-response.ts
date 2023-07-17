@@ -1,11 +1,13 @@
+import { UnauthorizedError } from "express-oauth2-jwt-bearer";
 import { StatusCodes } from "http-status-codes";
-import { Error403 } from "src/error/error-403";
 
 export function ErrorResponse(err, req, res, next) {
-  if (err instanceof Error403) {
-    res.status(StatusCodes.FORBIDDEN).send("FORBIDDEN");
+  if (err instanceof UnauthorizedError) {
+    res.status(StatusCodes.FORBIDDEN).json({ message: err.message });
   } else {
-    res.status(StatusCodes.SERVICE_UNAVAILABLE).send("something wrong");
+    res
+      .status(StatusCodes.SERVICE_UNAVAILABLE)
+      .json({ message: "something wrong" });
   }
 
   next(err);
