@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "strict": false,
+    "target": "es6",
+    "skipLibCheck": true,
+    "useUnknownInCatchVariables": false,
+    "strictNullChecks": false,
+    "allowJs": true,
+    "types": ["reflect-metadata"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["./src/*"],
+      "@bootstrap/*": ["./src/bootstrap/*"],
+      "@usecase/*": ["./src/usecase/*"],
+      "@config/*": ["./src/config/*"],
+      "@controller/*": ["./src/controller/*"],
+      "@gateway/*": ["./src/gateway/*"],
+      "@repository/*": ["./src/repository/*"],
+      "@model/*": ["./src/model/*"]
+    }
+  },
+  "hooks": [ "copy-files" ],
+  "include": ["src/**/*", "src/**/*.json"],
+  "exclude": ["**/*.spec.ts"]
+}
