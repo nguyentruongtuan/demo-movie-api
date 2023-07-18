@@ -15,7 +15,6 @@ app.use(bodyParser.json());
 container.get<AppRouter>(TYPES.AppRouter).init(app);
 app.use(ErrorResponse);
 
-app.listen(3000, () => {
-
-  console.log("App is listening on PORT 3000")
+app.listen(8000, () => {
+  console.log("App is listening on PORT 8000");
 });

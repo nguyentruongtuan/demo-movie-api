@@ -9,8 +9,8 @@
     "start": "node ./dist/index.js",
     "copy-files": "cp src/config/*.yaml dist/config",
     "start:debug": "node --inspect=0.0.0.0 ./dist/app.js",
-    "migrate:create": "migrate create --migrations-dir=./src/migrations/files --template-file ./src/migrations/utils/template.ts",
-    "migrate:up": "migrate up --migrations-dir=./dist/migrations/files --matches=*.js --store=./dist/migrations/utils/storage.js"
+    "migrate:up": "sequelize-cli db:migrate",
+    "seed:all": "sequelize-cli db:seed:all"
   },
   "keywords": [
     "formula1",
@@ -40,7 +40,10 @@
     "mongo-uri-builder": "^4.0.0",
     "mongodb": "^5.4.0",
     "mongoose": "^7.3.0",
+    "pg": "^8.11.1",
+    "pg-hstore": "^2.3.4",
     "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.32.1",
     "swagger-ui": "^5.1.0",
     "swagger-ui-express": "^5.0.0",
     "typescript": "^5.0.4",
@@ -49,7 +52,8 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.59.5",
     "@typescript-eslint/parser": "^5.59.5",
-    "eslint": "^8.40.0"
+    "eslint": "^8.40.0",
+    "sequelize-cli": "^6.6.1"
   },
   "_moduleAliases": {
     "src": "dist",

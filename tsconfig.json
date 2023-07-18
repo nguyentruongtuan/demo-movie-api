@@ -31,6 +31,13 @@
     }
   },
   "hooks": ["copy-files"],
-  "include": ["src/**/*", "src/**/*.json", "src/**/*.yaml"],
+  "include": [
+    "src/**/*",
+    "src/**/*.json",
+    "src/**/*.yaml",
+    "src/migrations/**/*.js",
+    "src/seeders/**/*.js",
+    "src/config/**/*.json"
+  ],
   "exclude": ["**/*.spec.ts"]
 }
