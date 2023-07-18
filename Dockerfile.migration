@@ -4,8 +4,7 @@ WORKDIR /app
 
 COPY package.json ./package.json
 COPY package-lock.json ./package-lock.json
+COPY ./.sequelizerc ./.sequelizerc
 COPY src src
 
 RUN npm i
-
-COPY ./.sequelizerc ./.sequelizerc

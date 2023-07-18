@@ -1,32 +1,23 @@
 import { injectable } from "inversify";
 import { Sequelize } from "sequelize";
+import container from "./container";
+import { TYPES } from "./types";
 
-// export async function getDB(): Promise<{
-//   client: Sequelize;
-//   Sequelize: typeof Sequelize;
-// }> {
-//   try {
-//     await client.authenticate();
-//     await client.sync();
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-
-//   return { client, Sequelize };
-// }
-
-@injectable()
 export class Database {
   private client: Sequelize;
   constructor() {
-    this.client = new Sequelize("postgres://root:123132@db:5432/movie");
+    this.client = new Sequelize("postgres://root:123123@127.0.0.1:5432/movie");
   }
 
   public getClient() {
     return { client: this.client, Sequelize };
   }
+
+  public async test() {
+    try {
+      await this.client.authenticate();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
-
-// const client = new Sequelize("postgres://root:123132@db:5432/movie");
-
-// export default { client, Sequelize };

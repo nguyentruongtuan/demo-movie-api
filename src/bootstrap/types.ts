@@ -7,4 +7,6 @@ export const TYPES = {
   MovieController: Symbol.for("MovieController"),
   MovieRepository: Symbol.for("MovieRepository"),
   GetMoviesUsecase: Symbol.for("GetMoviesUsecase"),
+  MovieGateway: Symbol.for("MovieGateway"),
+  MovieModel: Symbol.for("MovieModel"),
 };

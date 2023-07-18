@@ -6,6 +6,7 @@ import { AppRouter } from "@bootstrap/app-router";
 import { TYPES } from "@bootstrap/types";
 import { ErrorResponse } from "./middleware/error-response";
 import bodyParser from "body-parser";
+import { Database } from "./bootstrap/database";
 
 const app = express();
 
@@ -15,6 +16,10 @@ app.use(bodyParser.json());
 container.get<AppRouter>(TYPES.AppRouter).init(app);
 app.use(ErrorResponse);
 
-app.listen(8000, () => {
-  console.log("App is listening on PORT 8000");
+new Database().test().then(() => {
+  app.listen(8000, () => {
+    console.log("App is listening on PORT 8000");
+  });
 });
+
+
