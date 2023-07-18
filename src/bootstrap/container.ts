@@ -13,6 +13,7 @@ import { GetMoviesUsecase } from "src/usecase/get-movies-usecase";
 import { MovieModel } from "src/model/movie-model";
 import { MovieGateway } from "src/gateway/movie-gateway";
 import { Database } from "./database";
+import { GenreModel } from "src/model/genre-model";
 
 const container = new Container();
 
@@ -28,5 +29,6 @@ container
   .bind<SwaggerController>(TYPES.SwaggerController)
   .to(SwaggerController);
 container.bind<MovieModel>(TYPES.MovieModel).to(MovieModel);
+container.bind<GenreModel>(TYPES.GenreModel).to(GenreModel);
 
 export default container

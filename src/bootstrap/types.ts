@@ -9,4 +9,5 @@ export const TYPES = {
   GetMoviesUsecase: Symbol.for("GetMoviesUsecase"),
   MovieGateway: Symbol.for("MovieGateway"),
   MovieModel: Symbol.for("MovieModel"),
+  GenreModel: Symbol.for("GenreModel"),
 };

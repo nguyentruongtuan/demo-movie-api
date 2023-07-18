@@ -1,3 +1,3 @@
-export interface BaseUsecase<Response> {
-  execute<Request>(req: Request): Promise<Response>;
+export interface BaseUsecase<Request, Response> {
+  execute(req: Request): Promise<Response>;
 }

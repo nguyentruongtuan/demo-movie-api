@@ -1,7 +1,5 @@
-import { inject, injectable } from "inversify";
+import { injectable } from "inversify";
 import { Model } from "sequelize";
-import { Database } from "src/bootstrap/database";
-import { TYPES } from "src/bootstrap/types";
 
 @injectable()
 export abstract class BaseModel extends Model {

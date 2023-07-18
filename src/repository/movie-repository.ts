@@ -5,6 +5,7 @@ import { CreateMovieRequest } from "src/request/create-movie-request";
 import { Movie } from "src/entity/movie";
 import { TYPES } from "src/bootstrap/types";
 import { MovieGateway } from "src/gateway/movie-gateway";
+import { GetMoviesRequest } from "src/request/get-movies-request";
 
 export interface MovieRepository extends BaseRepository<Movie> {}
 
@@ -24,7 +25,7 @@ export class MovieControllerImpl implements MovieRepository {
 
   async deleteEntity(id: string): Promise<void> {}
 
-  async getEntities(): Promise<Movie[]> {
-    return this.movieGateway.getAll();
+  async getEntities(req: GetMoviesRequest): Promise<Movie[]> {
+    return this.movieGateway.getAll(req);
   }
 }

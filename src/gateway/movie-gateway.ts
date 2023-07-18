@@ -3,6 +3,7 @@ import { MovieModel } from "src/model/movie-model";
 import { BaseGateway } from "./base-gateway";
 import { Movie } from "src/entity/movie";
 import { MovieMapping } from "src/entity/data-mapping/movie-mapping";
+import { GetMoviesRequest } from "src/request/get-movies-request";
 
 @injectable()
 export class MovieGateway extends BaseGateway<Movie> {
@@ -12,8 +13,11 @@ export class MovieGateway extends BaseGateway<Movie> {
     return new MovieMapping(movie).build();
   }
 
-  async getAll(): Promise<Array<Movie>> {
-    const movies = await MovieModel.findAll({ limit: 10 });
+  async getAll(req: GetMoviesRequest): Promise<Array<Movie>> {
+    const movies = await MovieModel.findAll({
+      limit: req.limit,
+      offset: req.offset,
+    });
 
     return movies.map((m) => new MovieMapping(m).build());
   }

@@ -14,6 +14,15 @@ paths:
       tags:
         - movie
       summary: Get all movie entities
+      parameters:
+        - in: query 
+          name: limit
+          type: integer
+          description: Limit number 
+        - in: query 
+          name: offset
+          type: integer
+          description: Offset number 
       responses:
         '200':
           description: successfull
