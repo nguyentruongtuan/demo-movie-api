@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
-import { BaseController } from "./base-controller";
 import protectURL from "src/middleware/auth";
+import { BaseController } from "./base-controller";
 
 @injectable()
 export class UserController extends BaseController {

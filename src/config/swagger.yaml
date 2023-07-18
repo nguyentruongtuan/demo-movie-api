@@ -9,11 +9,11 @@ servers:
 
 
 paths:
-  /teams:
+  /movies:
     get:
       tags:
-        - team
-      summary: Get all team entities
+        - movie
+      summary: Get all movie entities
       responses:
         '200':
           description: successfull
@@ -22,235 +22,111 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Team'
+                  $ref: '#/components/schemas/Movie'
     post: 
       tags:
-        - team 
-      summary: Create team entity 
+        - movie 
+      summary: Create movie entity 
       requestBody:
-        description: Create a new team entity
+        description: Create a new movie entity
         content:
           application/json: 
             schema:
-              $ref: '#/components/schemas/TeamRequest'
+              $ref: '#/components/schemas/MovieRequest'
       responses:
         '201':
           description: created
           content:
             application/json: 
               schema:
-                $ref: '#/components/schemas/Team'
-  /teams/{id}:
+                $ref: '#/components/schemas/Movie'
+  /movies/{id}:
     get:
       tags:
-        - team
-      summary: Get a team
-      description: get a team
+        - movie
+      summary: Get a movie
+      description: get a movie
       parameters:
         - name: id
           in: path
-          description: team id to get
+          description: movie id to get
           required: true
           schema:
             type: string
       responses:
         '400':
-          description: Invalid team value
+          description: Invalid movie value
         '200':
-          description: Get team
+          description: Get movie
           content:
             application/json: 
               schema:
-                $ref: '#/components/schemas/Team'
+                $ref: '#/components/schemas/Movie'
     
     delete:
       tags:
-        - team
-      summary: Deletes a team
-      description: delete a team
+        - movie
+      summary: Deletes a movie
+      description: delete a movie
       parameters:
         - name: id
           in: path
-          description: team id to delete
+          description: movie id to delete
           required: true
           schema:
             type: string
       responses:
         '400':
-          description: Invalid team value
+          description: Invalid movie value
         '204':
           description: No content
     
     put:
       tags:
-        - team
-      summary: Update a team
-      description: update a team
+        - movie
+      summary: Update a movie
+      description: update a movie
       parameters:
         - name: id
           in: path
-          description: team id to delete
+          description: movie id to delete
           required: true
           schema:
             type: string
       requestBody:
-        description: Create a new team entity
+        description: Create a new movie entity
         content:
           application/json: 
             schema:
-              $ref: '#/components/schemas/TeamRequest'      
+              $ref: '#/components/schemas/MovieRequest'      
       responses:
         '400':
-          description: Invalid team value
+          description: Invalid movie value
         '200':
           description: updated
           content:
             application/json: 
               schema:
-                $ref: '#/components/schemas/Team'
+                $ref: '#/components/schemas/Movie'
 
 
 
 components:
   schemas:
-    TeamRequest: 
-      type: object
-      properties:
-        fullTeamName: 
-          type: string
-        base: 
-          type: string
-        teamChief: 
-          type: string
-        technicalChief: 
-          type: string
-        chassis: 
-          type: string
-        powerUnit: 
-          type: string
-        firstTeamEntry: 
-          type: string
-        worldChampionships: 
-          type: number
-        highestRaceFinish: 
-          type: string
-        polePositions: 
-          type: number
-        fastestLaps: 
-          type: number
-        shortName: 
-          type: string
-    Team:
-      allOf: 
-      - $ref: '#/components/schemas/TeamRequest'
-      - type: object
-        required:
-        - id
-        properties:
-          id:
-            type: string
-    DriverRequest:
-      type: object
-      properties:
-        name: 
-          type: string
-        biography: 
-          type: string
-        team: 
-          type: string
-        country: 
-          type: string
-        podiums: 
-          type: number
-        points: 
-          type: number
-        grandsPrixEntered: 
-          type: number
-        worldChampionships: 
-          type: string
-        highestRaceFinish: 
-          type: string
-        highestGridPosition: 
-          type: string
-        dateOfBirth: 
-          type: string
-        placeOfBirth: 
-          type: string
-    Driver:
-      allOf: 
-      - $ref: '#/components/schemas/DriverRequest'
-      - type: object
-        required:
-        - id
-        properties:
-          id:
-            type: string
-    EventRequest:
-      type: object
-      properties:
-          title: 
-            type: string
-          pos: 
-            type: number
-          no: 
-            type: string
-          driver: 
-            type: string
-          car: 
-            type: string
-          lap: 
-            type: number
-          timeRetired: 
-            type: number
-    Event:
-      allOf: 
-      - $ref: '#/components/schemas/EventRequest'
-      - type: object
-        required:
-        - id
-        properties:
-          id:
-            type: string
-    RaceRequest:
-      type: object
-      properties:
-        startDate: 
-          type: string
-        endDate: 
-          type: string
-        status: 
-          type: string
-        raceEvent: 
-          type: string
-    Race:
-      allOf: 
-      - $ref: '#/components/schemas/RaceRequest'
-      - type: object
-        required:
-        - id
-        properties:
-          id:
-            type: string
-    RaceResultRequest:
+    MovieRequest: 
       type: object
       properties:
         title: 
           type: string
-        pos: 
-          type: number
-        no: 
+        genre: 
+          type: array
+          items:
+            type: string
+        year: 
           type: string
-        driver: 
-          type: string
-        car: 
-          type: string
-        lap: 
-          type: number
-        timeRetired: 
-          type: number
-    RaceResult:
+    Movie:
       allOf: 
-      - $ref: '#/components/schemas/RaceResultRequest'
+      - $ref: '#/components/schemas/MovieRequest'
       - type: object
         required:
         - id
