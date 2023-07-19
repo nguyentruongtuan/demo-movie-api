@@ -2,25 +2,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Genres', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      name: {
-        type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
-    });
+
+    await queryInterface.sequelize.query(`
+
+      CREATE SEQUENCE Genres_id_seq START 21;
+      
+      CREATE TABLE "Genres" (
+        id INTEGER PRIMARY KEY DEFAULT nextval('Genres_id_seq'),
+        name VARCHAR(255) NOT NULL,
+        "createdAt" TIMESTAMPTZ,
+        "updatedAt" TIMESTAMPTZ
+      );
+
+      ALTER SEQUENCE Genres_id_seq OWNED BY "Genres".id;
+    `)
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Genres');
