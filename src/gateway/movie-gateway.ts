@@ -6,6 +6,7 @@ import { MovieMapping } from "src/entity/data-mapping/movie-mapping";
 import { GetMoviesRequest } from "src/request/get-movies-request";
 import { CreateMovieRequest } from "src/request/create-movie-request";
 import { UpdateMovieRequest } from "src/request/update-movie-request";
+import { NotFound } from "src/error/not-found";
 
 @injectable()
 export class MovieGateway extends BaseGateway<Movie> {
@@ -13,7 +14,7 @@ export class MovieGateway extends BaseGateway<Movie> {
     const movie = await MovieModel.findOne({ where: { id } });
 
     if (!movie) {
-      throw new Error(`Cannot find Movie entity with id ${id}`);
+      throw new NotFound(`Cannot find Movie entity with id ${id}`);
     }
 
     return new MovieMapping(movie).build();
@@ -38,7 +39,7 @@ export class MovieGateway extends BaseGateway<Movie> {
     const { id, ...modifiedData } = req;
     const movie = await MovieModel.findByPk(id);
     if (!movie) {
-      throw new Error(`Cannot find Movie entity with id ${id}`);
+      throw new NotFound(`Cannot find Movie entity with id ${id}`);
     }
 
     movie.set({ ...modifiedData });

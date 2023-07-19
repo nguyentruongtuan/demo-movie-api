@@ -1,16 +1,15 @@
 import { inject, injectable } from "inversify";
-import protectURL from "src/middleware/auth";
-import { BaseController } from "./base-controller";
-import { GetMoviesUsecase } from "src/usecase/get-movies-usecase";
 import { TYPES } from "src/bootstrap/types";
-import { GetEntitiesRequestMapping } from "src/request/mapping/get-entities-request-mapping";
-import { CreateMovieUsecase } from "src/usecase/create-movie-usecase";
+import protectURL from "src/middleware/auth";
 import { CreateMovieMapping } from "src/request/mapping/create-movie-mapping";
-import { DeleteMovieUsecase } from "src/usecase/delete-movie-usecase";
+import { GetEntitiesRequestMapping } from "src/request/mapping/get-entities-request-mapping";
 import { UpdateMovieMapping } from "src/request/mapping/update-movie-mapping";
-import { UpdateMovieUsecase } from "src/usecase/update-movie-usecase";
+import { CreateMovieUsecase } from "src/usecase/create-movie-usecase";
+import { DeleteMovieUsecase } from "src/usecase/delete-movie-usecase";
 import { GetMovieByIdUsecase } from "src/usecase/get-movie-by-id-usecase";
-import { ErrorResponse } from "src/middleware/error-response";
+import { GetMoviesUsecase } from "src/usecase/get-movies-usecase";
+import { UpdateMovieUsecase } from "src/usecase/update-movie-usecase";
+import { BaseController } from "./base-controller";
 
 @injectable()
 export class MovieController extends BaseController {
