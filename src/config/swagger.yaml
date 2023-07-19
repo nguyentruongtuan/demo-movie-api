@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Formula1 system 
+  title: Demo Movie API 
   version: 1.0.0
   contact:
     email: denny.truongnguyen@gmail.com
