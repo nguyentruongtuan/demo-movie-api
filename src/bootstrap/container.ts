@@ -1,23 +1,28 @@
-import { Container } from "inversify";
-import { TYPES } from "./types";
-import { UserController } from "@controller/user-controller";
 import { AppRouter } from "@bootstrap/app-router";
+import { UserController } from "@controller/user-controller";
+import { Container } from "inversify";
 import { Auth0Controller } from "src/controller/auth0-controller";
-import { SwaggerController } from "src/controller/swagger-controller";
 import { MovieController } from "src/controller/movie-controller";
-import {
-  MovieControllerImpl,
-  MovieRepository,
-} from "src/repository/movie-repository";
-import { GetMoviesUsecase } from "src/usecase/get-movies-usecase";
-import { MovieModel } from "src/model/movie-model";
+import { SwaggerController } from "src/controller/swagger-controller";
 import { MovieGateway } from "src/gateway/movie-gateway";
-import { Database } from "./database";
 import { GenreModel } from "src/model/genre-model";
+import { MovieModel } from "src/model/movie-model";
+import {
+  MovieGenreRepository,
+  MovieGenreRepositoryImpl,
+} from "src/repository/movie-genre-repository";
+import {
+  MovieRepository,
+  MovieRepositoryImpl,
+} from "src/repository/movie-repository";
 import { CreateMovieUsecase } from "src/usecase/create-movie-usecase";
 import { DeleteMovieUsecase } from "src/usecase/delete-movie-usecase";
-import { UpdateMovieUsecase } from "src/usecase/update-movie-usecase";
 import { GetMovieByIdUsecase } from "src/usecase/get-movie-by-id-usecase";
+import { GetMoviesUsecase } from "src/usecase/get-movies-usecase";
+import { UpdateMovieUsecase } from "src/usecase/update-movie-usecase";
+import { Database } from "./database";
+import { TYPES } from "./types";
+import { MovieGenreGateway } from "src/gateway/movie-genre-gateway";
 
 const container = new Container();
 
@@ -33,7 +38,10 @@ container
   .to(SwaggerController);
 
 // @NOTE: Repositories
-container.bind<MovieRepository>(TYPES.MovieRepository).to(MovieControllerImpl);
+container.bind<MovieRepository>(TYPES.MovieRepository).to(MovieRepositoryImpl);
+container
+  .bind<MovieGenreRepository>(TYPES.MovieGenreRepository)
+  .to(MovieGenreRepositoryImpl);
 
 // @NOTE: Usecases
 container
@@ -52,6 +60,9 @@ container
 
 // @NOTE: Gateways
 container.bind<MovieGateway>(TYPES.MovieGateway).to(MovieGateway);
+container
+  .bind<MovieGenreGateway>(TYPES.MovieGenreGateway)
+  .to(MovieGenreGateway);
 
 // @NOTE: Models
 container.bind<MovieModel>(TYPES.MovieModel).to(MovieModel);

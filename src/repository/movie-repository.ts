@@ -11,7 +11,7 @@ export interface MovieRepository
   extends BaseRepository<Movie, CreateMovieRequest, UpdateMovieRequest> {}
 
 @injectable()
-export class MovieControllerImpl implements MovieRepository {
+export class MovieRepositoryImpl implements MovieRepository {
   constructor(
     @inject(TYPES.MovieGateway) private readonly movieGateway: MovieGateway
   ) {}

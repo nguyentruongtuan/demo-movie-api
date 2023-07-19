@@ -1,10 +1,7 @@
-import { Genre } from "./genre";
-
-export interface Movie {
-  id: number;
+export type CreateMovieViewRequest = {
   title: string;
   year: number;
   genres: Array<number>;
   createdAt: Date;
   updatedAt: Date;
-}
+};

@@ -8,6 +8,8 @@ export const TYPES = {
   MovieController: Symbol.for("MovieController"),
 
   MovieRepository: Symbol.for("MovieRepository"),
+  MovieGenreRepository: Symbol.for("MovieGenreRepository"),
+
   GetMoviesUsecase: Symbol.for("GetMoviesUsecase"),
   CreateMovieUsecase: Symbol.for("CreateMovieUsecase"),
   DeleteMovieUsecase: Symbol.for("DeleteMovieUsecase"),
@@ -15,6 +17,7 @@ export const TYPES = {
   GetMovieByIdUsecase: Symbol.for("GetMovieByIdUsecase"),
 
   MovieGateway: Symbol.for("MovieGateway"),
+  MovieGenreGateway: Symbol.for("MovieGenreGateway"),
 
   MovieModel: Symbol.for("MovieModel"),
   GenreModel: Symbol.for("GenreModel"),
