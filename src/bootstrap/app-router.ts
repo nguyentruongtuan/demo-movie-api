@@ -2,10 +2,9 @@ import { UserController } from "@controller/user-controller";
 import { Express } from "express";
 import { inject, injectable } from "inversify";
 import { Auth0Controller } from "src/controller/auth0-controller";
-import { TYPES } from "./types";
-import { SwaggerController } from "src/controller/swagger-controller";
-import { ErrorResponse } from "src/middleware/error-response";
 import { MovieController } from "src/controller/movie-controller";
+import { SwaggerController } from "src/controller/swagger-controller";
+import { TYPES } from "./types";
 
 @injectable()
 export class AppRouter {

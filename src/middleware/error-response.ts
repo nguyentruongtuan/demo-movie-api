@@ -9,6 +9,4 @@ export function ErrorResponse(err, req, res, next) {
       .status(StatusCodes.SERVICE_UNAVAILABLE)
       .json({ message: "something wrong" });
   }
-
-  next(err);
 }

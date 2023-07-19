@@ -10,6 +10,9 @@ export const TYPES = {
   MovieRepository: Symbol.for("MovieRepository"),
   GetMoviesUsecase: Symbol.for("GetMoviesUsecase"),
   CreateMovieUsecase: Symbol.for("CreateMovieUsecase"),
+  DeleteMovieUsecase: Symbol.for("DeleteMovieUsecase"),
+  UpdateMovieUsecase: Symbol.for("UpdateMovieUsecase"),
+  GetMovieByIdUsecase: Symbol.for("GetMovieByIdUsecase"),
 
   MovieGateway: Symbol.for("MovieGateway"),
 

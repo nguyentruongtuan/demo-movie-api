@@ -15,6 +15,9 @@ import { MovieGateway } from "src/gateway/movie-gateway";
 import { Database } from "./database";
 import { GenreModel } from "src/model/genre-model";
 import { CreateMovieUsecase } from "src/usecase/create-movie-usecase";
+import { DeleteMovieUsecase } from "src/usecase/delete-movie-usecase";
+import { UpdateMovieUsecase } from "src/usecase/update-movie-usecase";
+import { GetMovieByIdUsecase } from "src/usecase/get-movie-by-id-usecase";
 
 const container = new Container();
 
@@ -33,7 +36,16 @@ container
 container.bind<MovieRepository>(TYPES.MovieRepository).to(MovieControllerImpl);
 
 // @NOTE: Usecases
+container
+  .bind<GetMovieByIdUsecase>(TYPES.GetMovieByIdUsecase)
+  .to(GetMovieByIdUsecase);
+container
+  .bind<DeleteMovieUsecase>(TYPES.DeleteMovieUsecase)
+  .to(DeleteMovieUsecase);
 container.bind<GetMoviesUsecase>(TYPES.GetMoviesUsecase).to(GetMoviesUsecase);
+container
+  .bind<UpdateMovieUsecase>(TYPES.UpdateMovieUsecase)
+  .to(UpdateMovieUsecase);
 container
   .bind<CreateMovieUsecase>(TYPES.CreateMovieUsecase)
   .to(CreateMovieUsecase);

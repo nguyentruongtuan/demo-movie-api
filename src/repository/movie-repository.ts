@@ -16,15 +16,21 @@ export class MovieControllerImpl implements MovieRepository {
     @inject(TYPES.MovieGateway) private readonly movieGateway: MovieGateway
   ) {}
 
+  async getEntityById(id: number): Promise<Movie> {
+    return this.movieGateway.getById(id);
+  }
+
   async createEntity(request: CreateMovieRequest): Promise<Movie> {
     return this.movieGateway.create(request);
   }
 
   async updateEntity(req: UpdateMovieRequest): Promise<Movie> {
-    return null;
+    return this.movieGateway.updateById(req);
   }
 
-  async deleteEntity(id: string): Promise<void> {}
+  async deleteEntity(id: number): Promise<void> {
+    return this.movieGateway.deleteById(id);
+  }
 
   async getEntities(req: GetMoviesRequest): Promise<Movie[]> {
     return this.movieGateway.getAll(req);
