@@ -8,6 +8,7 @@ export abstract class BaseController {
 
   constructor() {
     this.router = express.Router();
+    this.router.use(ErrorResponse);
     this.init();
   }
 

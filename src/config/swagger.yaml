@@ -130,9 +130,10 @@ components:
         genre: 
           type: array
           items:
-            type: string
+            type: number
+          description: genre ids 
         year: 
-          type: string
+          type: number
     Movie:
       allOf: 
       - $ref: '#/components/schemas/MovieRequest'

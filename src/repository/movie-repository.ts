@@ -7,7 +7,8 @@ import { TYPES } from "src/bootstrap/types";
 import { MovieGateway } from "src/gateway/movie-gateway";
 import { GetMoviesRequest } from "src/request/get-movies-request";
 
-export interface MovieRepository extends BaseRepository<Movie> {}
+export interface MovieRepository
+  extends BaseRepository<Movie, CreateMovieRequest, UpdateMovieRequest> {}
 
 @injectable()
 export class MovieControllerImpl implements MovieRepository {
@@ -16,7 +17,7 @@ export class MovieControllerImpl implements MovieRepository {
   ) {}
 
   async createEntity(request: CreateMovieRequest): Promise<Movie> {
-    return null;
+    return this.movieGateway.create(request);
   }
 
   async updateEntity(req: UpdateMovieRequest): Promise<Movie> {

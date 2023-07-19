@@ -1,5 +1,3 @@
-import { Error403 } from "src/error/error-403";
-
 import { auth } from "express-oauth2-jwt-bearer";
 
 const config = {
@@ -9,11 +7,3 @@ const config = {
 };
 
 export default auth(config);
-
-// export function protectURL(req, res, next) {
-//   if (!req.oidc.isAuthenticated()) {
-//     throw new Error403("Forbidden");
-//   }
-
-//   next();
-// }

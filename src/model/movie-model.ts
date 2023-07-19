@@ -22,5 +22,8 @@ MovieModel.init(
       allowNull: false,
     },
   },
-  { sequelize: database.getClient().client, modelName: "Movies" }
+  {
+    sequelize: database.getClient().client,
+    modelName: "Movies",
+  }
 );

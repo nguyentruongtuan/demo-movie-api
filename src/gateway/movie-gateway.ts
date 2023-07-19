@@ -4,6 +4,7 @@ import { BaseGateway } from "./base-gateway";
 import { Movie } from "src/entity/movie";
 import { MovieMapping } from "src/entity/data-mapping/movie-mapping";
 import { GetMoviesRequest } from "src/request/get-movies-request";
+import { CreateMovieRequest } from "src/request/create-movie-request";
 
 @injectable()
 export class MovieGateway extends BaseGateway<Movie> {
@@ -20,5 +21,11 @@ export class MovieGateway extends BaseGateway<Movie> {
     });
 
     return movies.map((m) => new MovieMapping(m).build());
+  }
+
+  async create(req: CreateMovieRequest): Promise<Movie> {
+    const movie = await MovieModel.create(req);
+
+    return new MovieMapping(movie).build();
   }
 }
