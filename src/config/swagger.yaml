@@ -17,12 +17,26 @@ paths:
       parameters:
         - in: query 
           name: limit
-          type: integer
+          schema:  
+            type: integer
           description: Limit number 
         - in: query 
           name: offset
-          type: integer
+          schema:
+            type: integer
           description: Offset number 
+        - in: query 
+          name: genres
+          schema:
+            type: array
+            items:
+              type: number
+        - in: query 
+          name: year
+          schema:
+            type: array
+            items:
+              type: number
       responses:
         '200':
           description: successfull

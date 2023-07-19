@@ -1,6 +1,6 @@
 import { inject, injectable } from "inversify";
 import { TYPES } from "src/bootstrap/types";
-import { Movie } from "src/entity/movie";
+import { Movie, MovieId } from "src/entity/movie";
 import { MovieRepository } from "src/repository/movie-repository";
 import { BaseUsecase } from "./base-usecase";
 
@@ -11,7 +11,7 @@ export class GetMovieByIdUsecase implements BaseUsecase<number, Movie> {
     private readonly movieRepository: MovieRepository
   ) {}
 
-  async execute(id: number): Promise<Movie> {
+  async execute(id: MovieId): Promise<Movie> {
     return this.movieRepository.getEntityById(id);
   }
 }

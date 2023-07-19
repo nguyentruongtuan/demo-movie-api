@@ -2,6 +2,8 @@ import { injectable } from "inversify";
 import { BaseModel } from "./base-model";
 import { Database } from "src/bootstrap/database";
 import { DataTypes } from "sequelize";
+import { MovieModel } from "./movie-model";
+import { MovieGenreModel } from "./movie-genre-model";
 
 @injectable()
 export class GenreModel extends BaseModel {
@@ -19,3 +21,4 @@ GenreModel.init(
   },
   { sequelize: database.getClient().client, modelName: "Genres" }
 );
+

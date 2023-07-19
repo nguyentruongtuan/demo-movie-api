@@ -1,10 +1,13 @@
 import { MovieModel } from "src/model/movie-model";
+import { Genre } from "../genre";
 import { Movie } from "../movie";
+import { GenreMapping } from "./genre-mapping";
 
 export class MovieMapping {
   private id: number;
   private title: string;
   private year: number;
+  private genres: Array<Genre>;
   private createdAt: Date;
   private updatedAt: Date;
 
@@ -12,28 +15,11 @@ export class MovieMapping {
     this.id = this.movieModel.id;
     this.title = this.movieModel.title;
     this.year = this.movieModel.year;
+    this.genres = this.movieModel.Genres.map((g) =>
+      new GenreMapping(g).build()
+    );
     this.updatedAt = this.movieModel.updatedAt;
     this.createdAt = this.movieModel.createdAt;
-  }
-
-  public setId(id: number): void {
-    this.id = id;
-  }
-
-  public setTitle(title: string): void {
-    this.title = title;
-  }
-
-  public setYear(year: number): void {
-    this.year = year;
-  }
-
-  public setCreatedAt(createdAt: Date): void {
-    this.createdAt = createdAt;
-  }
-
-  public setUpdatedAt(updatedAt: Date): void {
-    this.updatedAt = updatedAt;
   }
 
   public build(): Movie {
@@ -41,6 +27,7 @@ export class MovieMapping {
       id: this.id,
       title: this.title,
       year: this.year,
+      genres: this.genres,
       updatedAt: this.updatedAt,
       createdAt: this.createdAt,
     } as Movie;

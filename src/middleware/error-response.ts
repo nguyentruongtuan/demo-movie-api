@@ -3,6 +3,8 @@ import { StatusCodes } from "http-status-codes";
 import { NotFound } from "src/error/not-found";
 
 export function ErrorResponse(err, req, res, next) {
+
+  console.log(err);
   if (err instanceof UnauthorizedError) {
     res.status(StatusCodes.FORBIDDEN).json({ message: err.message });
   } else if (err instanceof NotFound) {

@@ -10,8 +10,8 @@ export class MovieGenreMapping {
 
   constructor(private readonly model: MovieGenreModel) {
     this.id = this.model.id;
-    this.movieId = this.model.movieId;
-    this.genreId = this.model.genreId;
+    this.movieId = this.model.MovieId;
+    this.genreId = this.model.GenreId;
     this.updatedAt = this.model.updatedAt;
     this.createdAt = this.model.createdAt;
   }

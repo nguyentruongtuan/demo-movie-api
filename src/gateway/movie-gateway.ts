@@ -7,6 +7,8 @@ import { GetMoviesRequest } from "src/request/get-movies-request";
 import { CreateMovieRequest } from "src/request/create-movie-request";
 import { UpdateMovieRequest } from "src/request/update-movie-request";
 import { NotFound } from "src/error/not-found";
+import { Op } from "sequelize";
+import { GenreModel } from "src/model/genre-model";
 
 @injectable()
 export class MovieGateway extends BaseGateway<Movie> {
@@ -21,9 +23,40 @@ export class MovieGateway extends BaseGateway<Movie> {
   }
 
   async getAll(req: GetMoviesRequest): Promise<Array<Movie>> {
+    const filters = {};
+    const relationFilter = {};
+
+    if (req.filter) {
+      for (const filter of req.filter) {
+        if (!filter.value) {
+          continue;
+        }
+        switch (filter.field) {
+          case "year":
+            filters["year"] = filter.value;
+            break;
+          case "updatedDate":
+            filters[Op.and] = [
+              { year: { [Op.gte]: filter.value.from } },
+              { year: { [Op.lte]: filter.value.to } },
+            ];
+            break;
+          case "genre":
+            relationFilter["id"] = filter.value;
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
     const movies = await MovieModel.findAll({
       limit: req.limit,
       offset: req.offset,
+      where: {
+        ...filters,
+      },
+      include: [{ model: GenreModel, where: { ...relationFilter } }],
     });
 
     return movies.map((m) => new MovieMapping(m).build());
