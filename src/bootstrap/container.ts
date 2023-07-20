@@ -23,6 +23,13 @@ import { UpdateMovieUsecase } from "src/usecase/update-movie-usecase";
 import { Database } from "./database";
 import { TYPES } from "./types";
 import { MovieGenreGateway } from "src/gateway/movie-genre-gateway";
+import { GenreController } from "src/controller/genre-controller";
+import {
+  GenreRepository,
+  GenreRepositoryImpl,
+} from "src/repository/genre-repository";
+import { GenreGateway } from "src/gateway/genre-gateway";
+import { GetGenresUsecase } from "src/usecase/genre/get-genres-usecase";
 
 const container = new Container();
 
@@ -33,12 +40,14 @@ container.bind<Database>(TYPES.Database).to(Database);
 container.bind<UserController>(TYPES.UserController).to(UserController);
 container.bind<Auth0Controller>(TYPES.Auth0Controller).to(Auth0Controller);
 container.bind<MovieController>(TYPES.MovieController).to(MovieController);
+container.bind<GenreController>(TYPES.GenreController).to(GenreController);
 container
   .bind<SwaggerController>(TYPES.SwaggerController)
   .to(SwaggerController);
 
 // @NOTE: Repositories
 container.bind<MovieRepository>(TYPES.MovieRepository).to(MovieRepositoryImpl);
+container.bind<GenreRepository>(TYPES.GenreRepository).to(GenreRepositoryImpl);
 container
   .bind<MovieGenreRepository>(TYPES.MovieGenreRepository)
   .to(MovieGenreRepositoryImpl);
@@ -57,9 +66,11 @@ container
 container
   .bind<CreateMovieUsecase>(TYPES.CreateMovieUsecase)
   .to(CreateMovieUsecase);
+container.bind<GetGenresUsecase>(TYPES.GetGenresUsecase).to(GetGenresUsecase);
 
 // @NOTE: Gateways
 container.bind<MovieGateway>(TYPES.MovieGateway).to(MovieGateway);
+container.bind<GenreGateway>(TYPES.GenreGateway).to(GenreGateway);
 container
   .bind<MovieGenreGateway>(TYPES.MovieGenreGateway)
   .to(MovieGenreGateway);

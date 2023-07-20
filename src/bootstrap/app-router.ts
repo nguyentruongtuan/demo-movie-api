@@ -5,6 +5,7 @@ import { Auth0Controller } from "src/controller/auth0-controller";
 import { MovieController } from "src/controller/movie-controller";
 import { SwaggerController } from "src/controller/swagger-controller";
 import { TYPES } from "./types";
+import { GenreController } from "src/controller/genre-controller";
 
 @injectable()
 export class AppRouter {
@@ -16,12 +17,15 @@ export class AppRouter {
     @inject(TYPES.SwaggerController)
     private readonly swaggerController: SwaggerController,
     @inject(TYPES.MovieController)
-    private readonly movieController: MovieController
+    private readonly movieController: MovieController,
+    @inject(TYPES.GenreController)
+    private readonly genreController: GenreController
   ) {}
 
   public init(app: Express): void {
     app.use("/api/users", this.userController.getRouter());
     app.use("/api/movies", this.movieController.getRouter());
+    app.use("/api/genres", this.genreController.getRouter());
     app.use("/swagger", this.swaggerController.getRouter());
     app.use("/", this.auth0Controller.getRouter());
   }

@@ -75,7 +75,7 @@ paths:
           description: movie id to get
           required: true
           schema:
-            type: string
+            type: number
       responses:
         '400':
           description: Invalid movie value
@@ -97,7 +97,7 @@ paths:
           description: movie id to delete
           required: true
           schema:
-            type: string
+            type: number
       responses:
         '400':
           description: Invalid movie value
@@ -115,7 +115,7 @@ paths:
           description: movie id to delete
           required: true
           schema:
-            type: string
+            type: number
       requestBody:
         description: Create a new movie entity
         content:
@@ -132,6 +132,55 @@ paths:
               schema:
                 $ref: '#/components/schemas/Movie'
 
+
+  /genres:
+    get:
+      tags:
+        - genre
+      summary: Get all genre entities
+      parameters:
+        - in: query 
+          name: limit
+          schema:  
+            type: integer
+          description: Limit number 
+        - in: query 
+          name: offset
+          schema:
+            type: integer
+          description: Offset number 
+      responses:
+        '200':
+          description: successfull
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+  /genres/{id}:
+    get:
+      tags:
+        - genre
+      summary: Get a genre
+      description: get a genre
+      parameters:
+        - name: id
+          in: path
+          description: genre id to get
+          required: true
+          schema:
+            type: number
+      responses:
+        '400':
+          description: Invalid genre value
+        '200':
+          description: Get genre
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/Genre'
+   
 
 
 components:
@@ -156,7 +205,21 @@ components:
         - id
         properties:
           id:
-            type: string
+            type: number
+    GenreRequest: 
+      type: object
+      properties:
+        name: 
+          type: string
+    Genre:
+      allOf: 
+      - $ref: '#/components/schemas/GenreRequest'
+      - type: object
+        required:
+        - id
+        properties:
+          id:
+            type: number
   securitySchemes:
     jwt_token:            # arbitrary name for the security scheme
       type: http
