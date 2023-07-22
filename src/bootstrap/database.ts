@@ -6,7 +6,7 @@ import { TYPES } from "./types";
 export class Database {
   private client: Sequelize;
   constructor() {
-    this.client = new Sequelize("postgres://root:123123@127.0.0.1:5432/movie");
+    this.client = new Sequelize("postgres://root:123123@db:5432/movie");
   }
 
   public getClient() {
